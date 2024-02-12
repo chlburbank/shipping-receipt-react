@@ -1,4 +1,5 @@
 import { Button, Form, Container } from "react-bootstrap";
+import TableForm from "./TableForm";
 
 function FormShipping() {
   return (
@@ -26,6 +27,10 @@ function FormShipping() {
             <Form.Control text="text"/>
             <Form.Label>DNI</Form.Label>
             <Form.Control text="text"/>
+        </Form.Group>
+
+        <Form.Group>
+            <TableForm/>
         </Form.Group>
         {/* <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>Password</Form.Label>
