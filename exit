@@ -1,0 +1,17 @@
+[33mcommit 00ead296cd0ee4cb135fdc7ca57d124d4a889fcd[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: Burbank <jonasmaches@gmail.com>
+Date:   Mon Feb 12 17:08:13 2024 +0000
+
+    Second commit. List is functional (not done).
+
+[33mcommit 85325569cfa0a0761e0a625d9a7f0b97ed2493b3[m
+Author: Burbank <jonasmaches@gmail.com>
+Date:   Thu Feb 8 23:21:54 2024 +0000
+
+    First commit. Login Functional (not done). Form Shipping in process.
+
+[33mcommit 76845b8f06bc323077620df5459ef1bf0609819f[m
+Author: Burbank <jonasmaches@gmail.com>
+Date:   Wed Feb 7 17:16:57 2024 +0000
+
+    Initialize project using Create React App

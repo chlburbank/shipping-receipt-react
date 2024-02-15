@@ -5,8 +5,13 @@ function ShippingData(props) {
     // State of the objects
     const [description, setDescription] =  useState("");
     const [quantity, setQuantity] =  useState("0");
+    const [idShipping, setIdShipping] = useState(0);
 
     //Functions that changes the state
+    const changeId = (event) => {
+        setIdShipping(idShipping + 1);
+    }
+
     const changeDescription = (event) => {
         setDescription(event.target.value);
     };
@@ -17,8 +22,10 @@ function ShippingData(props) {
 
     // Transers the values of this component to be passed to the parent
     const transferValue = (e) => {
+        changeId()
         e.preventDefault();
         const val = {
+            idShipping,
             description,
             quantity
         };

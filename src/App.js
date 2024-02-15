@@ -10,7 +10,6 @@ function App() {
       <Routes>
         <Route exact path="/" Component={LoginForm}/>
         <Route exact path="/FormShipping" Component={FormShipping}/>
-
         <Route path="*" Component={LoginForm}/>
       </Routes>
     </BrowserRouter>
