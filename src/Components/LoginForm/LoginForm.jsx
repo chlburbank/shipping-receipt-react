@@ -1,4 +1,3 @@
-// import { useState } from "react";
 import { Button, Form, Container } from 'react-bootstrap';
 
 import { login } from '../../utils/apicalls';
@@ -6,8 +5,10 @@ import { login } from '../../utils/apicalls';
 import { useNavigate } from 'react-router-dom';
 
 function LoginForm() {
+    // Redirection
     const navigate = useNavigate()
 
+    // Function that executes upon submitting the form
     const submitForm = (e) => {
         e.preventDefault();
 
@@ -17,6 +18,7 @@ function LoginForm() {
         validate(payload)
     }
 
+    // Function that validates wether user exists on the DB (MongoDb)
     const validate = async (payload) => {
         if (payload.username.length !== 0 && payload.password.length !== 0) {
             const arrayUsers = await login();

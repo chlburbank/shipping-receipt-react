@@ -1,5 +1,6 @@
 import { React, useState } from 'react'
 import ShippingData from './ShippingData';
+import { Button } from 'react-bootstrap';
 
 function TableForm(props){
     // State of the body of the table
@@ -9,12 +10,11 @@ function TableForm(props){
     const deleteShipment = (id) => {
         const newState =  shippingState.filter(li => li.idShipping !== id )
         setShippingState(newState)
+        props.onSubmit(newState);
     }
     
     // Adding Rows
     const addRows = (data) => {
-        const total = shippingState.length;
-        data.idShipping = total + 1;
         const updatedShippingData = [...shippingState];
         updatedShippingData.push(data);
         setShippingState(updatedShippingData);
@@ -28,7 +28,7 @@ function TableForm(props){
                 <td>{info.idShipping}</td>
                 <td>{info.description}</td>
                 <td>{info.quantity}</td>
-                <td><button onClick={() => {deleteShipment(info.idShipping)}}>Delete</button></td>
+                <td><Button onClick={() => {deleteShipment(info.idShipping)}}>Delete</Button></td>
             </tr>
         )
     });
