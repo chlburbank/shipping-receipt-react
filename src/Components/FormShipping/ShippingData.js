@@ -13,7 +13,8 @@ function ShippingData(props) {
     };
 
     const changeQuantity = (event) => {
-        setQuantity(Number(event.target.value));
+        const input = event.target.value.replace(/\D/g, ''); 
+        setQuantity(Number(input));
     };
 
     // Transers the values of this component to be passed to the parent
@@ -36,7 +37,7 @@ function ShippingData(props) {
     return (
         <Container>
             <label className='m-1'>Description</label>
-            <input type='text' value={description} onChange={changeDescription}></input>
+            <input type='text' value={description} onChange={changeDescription} style={{ width: '300px' }} ></input>
             <label className='m-1'>Quantity</label>
             <input type='text' value={quantity} onChange={changeQuantity}></input>
             <Button className='ms-3' onClick={transferValue}>Add</Button>
