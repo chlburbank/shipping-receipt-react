@@ -1,10 +1,14 @@
-import { React, useState } from 'react'
+import { React, useState, useEffect } from 'react'
 import ShippingData from './ShippingData';
 import { Button } from 'react-bootstrap';
 
 function TableForm(props){
     // State of the body of the table
     const [shippingState, setShippingState] = useState([]);
+
+    useEffect(() => {
+        setShippingState(props.data);
+    }, [props.data]);
 
     // Deleting the shipment
     const deleteShipment = (id) => {
@@ -18,9 +22,6 @@ function TableForm(props){
         setShippingState(prevState => [...prevState, data]);
         props.setData(prevState => [...prevState, data]);
     }
-
-    // Drawing the body
-
 
     return (
         <div>
