@@ -9,6 +9,7 @@ import TableForm from "./TableForm";
 
 // API Calls
 import { postShipment } from '../../utils/apicalls';
+// import ShippingData from './ShippingData';
 
 function FormShipping() {
 
@@ -33,7 +34,7 @@ function FormShipping() {
         setTelCError(!input);
     };
 
-    const generatePDF = async () => {
+    const generatePDF = async (form_data) => {
         const DEFAULT_TITLE = "KABAYANBOX S.L";
         const DEFAULT_SUBTEXT = 'CIF: B38788998';
         const DEFAULT_PARAGRAPH_SUBTEXT = 'Santa Cruz  de Tenerife, Islas Canarias, España Tels: 922-202736 /  922-709202 CP: 690-866588 Email: kabayanbox@wanadoo.es';
@@ -160,16 +161,30 @@ function FormShipping() {
                 }
 
                 if (i === 1) {
-                    const text = "Name:";
-                    const textHeight = 22;
-                    const textX = x + 2; // Adjust for padding
-                    const textY = y - (cellHeight - textHeight) / 2;
-                    page.drawText(text, {
-                        x: textX,
-                        y: textY,
-                        size: 12,
-                        color: rgb(0, 0, 0),
-                    });
+                    if (j === 0) {
+                        const text = "Name: " + form_data.name_s;
+                        const textHeight = 22;
+                        const textX = x + 2; // Adjust for padding
+                        const textY = y - (cellHeight - textHeight) / 2;
+                        page.drawText(text, {
+                            x: textX,
+                            y: textY,
+                            size: 12,
+                            color: rgb(0, 0, 0),
+                        });
+                    }
+                    if (j === 1) {
+                        const text = "Name: " + form_data.name_c;
+                        const textHeight = 22;
+                        const textX = x + 2; // Adjust for padding
+                        const textY = y - (cellHeight - textHeight) / 2;
+                        page.drawText(text, {
+                            x: textX,
+                            y: textY,
+                            size: 12,
+                            color: rgb(0, 0, 0),
+                        });
+                    }
                 }
                 if (i === 2) {
                     const text = "Address:";
@@ -183,22 +198,62 @@ function FormShipping() {
                         color: rgb(0, 0, 0),
                     });
                 }
+                if (i === 3) {
+                    if (j === 0) {
+                        const text = form_data.address_s;
+                        const textHeight = 22;
+                        const textX = x + 2; // Adjust for padding
+                        const textY = y - (cellHeight - textHeight) / 2;
+                        page.drawText(text, {
+                            x: textX,
+                            y: textY,
+                            size: 12,
+                            color: rgb(0, 0, 0),
+                        });
+                    }
+                    if (j === 1) {
+                        const text = form_data.address_c;
+                        const textHeight = 22;
+                        const textX = x + 2; // Adjust for padding
+                        const textY = y - (cellHeight - textHeight) / 2;
+                        page.drawText(text, {
+                            x: textX,
+                            y: textY,
+                            size: 12,
+                            color: rgb(0, 0, 0),
+                        });
+                    }
+                }
                 if (i === 4) {
-                    const text = "Tel: (   )";
-                    const textHeight = 22;
-                    const textX = x + 2; // Adjust for padding
-                    const textY = y - (cellHeight - textHeight) / 2;
-                    page.drawText(text, {
-                        x: textX,
-                        y: textY,
-                        size: 12,
-                        color: rgb(0, 0, 0),
-                    });
+                    if (j === 0) {
+                        const text = "Tel: (   ) " + form_data.tel_s;
+                        const textHeight = 22;
+                        const textX = x + 2; // Adjust for padding
+                        const textY = y - (cellHeight - textHeight) / 2;
+                        page.drawText(text, {
+                            x: textX,
+                            y: textY,
+                            size: 12,
+                            color: rgb(0, 0, 0),
+                        });
+                    }
+                    if (j === 1) {
+                        const text = "Tel: (   ) " + form_data.tel_c;
+                        const textHeight = 22;
+                        const textX = x + 2; // Adjust for padding
+                        const textY = y - (cellHeight - textHeight) / 2;
+                        page.drawText(text, {
+                            x: textX,
+                            y: textY,
+                            size: 12,
+                            color: rgb(0, 0, 0),
+                        });
+                    }
                 }
 
                 if (i === 5) {
                     if (j === 0) {
-                        const text = "DNI #:";
+                        const text = "DNI #: " + form_data.id_s;
                         const textHeight = 22;
                         const textX = x + 2; // Adjust for padding
                         const textY = y - (cellHeight - textHeight) / 2;
@@ -211,7 +266,7 @@ function FormShipping() {
                     }
     
                     if (j === 1) {
-                        const text = "Email:";
+                        const text = "Email: " + form_data.id_c;
                         const textHeight = 22;
                         const textX = x + 2; // Adjust for padding
                         const textY = y - (cellHeight - textHeight) / 2;
@@ -246,7 +301,7 @@ function FormShipping() {
             const x2 = x1 + firstColumnWidth;
             const x3 = x2 + secondColumnWidth;
             const x4 = x3 + thirdColumnWidth;
-
+            
             for (let j = 0; j < 4; j++) {
                 const x = j === 0 ? x1 : j === 1 ? x2 : j === 2 ? x3 : x4;
                 const y = secondTableStartY - i * secondTableHeight;
@@ -285,6 +340,69 @@ function FormShipping() {
                         font: fontBold
                     });
                 }
+                if (data.length <= 29) {
+                if (i !== 0 && j === 0 && i < data.length + 1) { // Skip the header row
+                    const dataIndex = i - 1
+                    const text = data[dataIndex].description;
+                    const textWidth = font.widthOfTextAtSize(text, 12);
+                    const textHeight = 22;
+                    const textX = (x + 1);
+                    const textY = y - (secondTableHeight - textHeight) / 2;
+                    page.drawText(text, {
+                        x: textX,
+                        y: textY,
+                        size: 12,
+                        textAlign: "left",
+                        color: rgb(0, 0, 0),
+                    });
+                    
+                    }
+                if (i !== 0 && j === 1 && i < data.length + 1) {
+                    const dataIndex = i - 1
+                    const text = String(data[dataIndex].quantity);
+                    const textWidth = font.widthOfTextAtSize(text, 12);
+                    const textHeight = 22;
+                    const textX = (x + 1);
+                    const textY = y - (secondTableHeight - textHeight) / 2;
+                    page.drawText(text, {
+                        x: textX,
+                        y: textY,
+                        size: 12,
+                        textAlign: "left",
+                        color: rgb(0, 0, 0),
+                    });
+                }
+                if (i !== 0 && j === 2 && i < data.length + 1) {
+                    const dataIndex = i - 1
+                    const text = data[dataIndex + 15]?.description || '';
+                    const textWidth = font.widthOfTextAtSize(text, 12);
+                    const textHeight = 22;
+                    const textX = (x + 1);
+                    const textY = y - (secondTableHeight - textHeight) / 2;
+                    page.drawText(text, {
+                        x: textX,
+                        y: textY,
+                        size: 12,
+                        textAlign: "left",
+                        color: rgb(0, 0, 0),
+                    });
+                }
+                if (i !== 0 && j === 3 && i < data.length + 1) {
+                    const dataIndex = i - 1
+                    const text = data[dataIndex + 15]?.quantity || '';
+                    const textHeight = 22;
+                    const textX = (x + 1);
+                    const textY = y - (secondTableHeight - textHeight) / 2;
+                    page.drawText(String(text), {
+                        x: textX,
+                        y: textY,
+                        size: 12,
+                        textAlign: "left",
+                        color: rgb(0, 0, 0),
+                    });
+                }
+                } 
+                
             }
         }
 
@@ -409,6 +527,16 @@ page.drawText("DATE", {
             return lines;
         }
 
+        // Load the logo image
+        page.drawImage(logoImage, {
+            x: ((width - logoWidth) / 2) - 100, // Center the logo horizontally
+            y: (height - logoHeight) / 2, // Center the logo vertically
+            width: logoWidth + 200,
+            height: logoHeight +200,
+            opacity: 0.2 // Set the opacity to 0.2 (adjust as needed)
+        });
+        
+
         return await pdfDoc.save();
     };
 
@@ -422,7 +550,7 @@ page.drawText("DATE", {
         try {
             await postShipment(payload.name_s, payload.address_s, Number(payload.tel_s), payload.id_s, payload.name_c, payload.address_c, Number(payload.tel_c), payload.id_c, data);
 
-            const pdfBytes = await generatePDF();
+            const pdfBytes = await generatePDF(payload);
             const pdfBlob = new Blob([pdfBytes], { type: 'application/pdf' });
             saveAs(pdfBlob, 'empty_pdf.pdf');
 
@@ -433,6 +561,7 @@ page.drawText("DATE", {
             clearForm();
 
             e.target.reset();
+
 
             setTimeout(() => {
                 setShowSuccessBanner(false);
@@ -494,7 +623,7 @@ page.drawText("DATE", {
                         isInvalid={telCError}
                     />
                     {telCError && <Form.Control.Feedback type="invalid">Please enter a valid 10-digit telephone number.</Form.Control.Feedback>}
-                    <Form.Label>DNI</Form.Label>
+                    <Form.Label>Email:</Form.Label>
                     <Form.Control text="text" name="id_c" placeholder="Enter identification" />
                 </Form.Group>
 
