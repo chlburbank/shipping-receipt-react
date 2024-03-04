@@ -58,7 +58,7 @@ const MainBanner = () => {
                                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                                 <Navbar.Collapse id="basic-navbar-nav">
                                     <Nav className="me-auto" style={{ backgroundColor: '#0f0f0f' , textAlign: 'center', borderRadius: '10px'}}>
-                                        <Nav.Link href="#about" style={{ color: '#ffffff' }}>About</Nav.Link>
+                                        <Nav.Link href="/about-us" style={{ color: '#ffffff' }}>About</Nav.Link>
                                         { !user && <Nav.Link href="/" style={{ color: '#ffffff' }}>Login</Nav.Link>}
                                         { user && <Nav.Link onClick={logOut} style={{ color: '#ffffff' }}>Log Out</Nav.Link>}
                                     </Nav>
@@ -66,8 +66,11 @@ const MainBanner = () => {
                             </Navbar>
                         ) : (
                             <Nav className="justify-content-end">
-                                <Nav.Item style={{ marginRight: '10px' }}>
-                                    <Nav.Link href="#about">About</Nav.Link>
+                                { user && <Nav.Item>
+                                    <Nav.Link href="/FormShipping">Add Shipping</Nav.Link>
+                                </Nav.Item>}
+                                <Nav.Item>
+                                    <Nav.Link href="/about-us">About</Nav.Link>
                                 </Nav.Item>
                                 {!user && <Nav.Item>
                                     <Nav.Link href="/">Login</Nav.Link>

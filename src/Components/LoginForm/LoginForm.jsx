@@ -79,7 +79,7 @@ function LoginForm() {
     };
 
     const handleForgotPassword = () => {
-        navigate("/forgot-password");
+        navigate("/");
     };
 
     return (
@@ -135,7 +135,7 @@ export default LoginForm;
 
 const styles = {
     pageBackground: {
-        backgroundColor: '#f8f7ff',
+        backgroundColor: '#dcdcdc',
         minHeight: '100vh',
     },
     logo: {
